@@ -29,9 +29,15 @@ app.get('/', (req, res, next) => {
 
 app.post("/", function(req, res) {
 
-  User.create(req.body)
-    .then(function(tweet) {
-      res.sendFile(path.join(__dirname, '/public', '/hidden.html'));
+  User.find(req.query)
+    .then(function(info) {
+      /* res.sendFile(path.join(__dirname, '/public', '/hidden.html')); */
+      if(info.username === req.query){
+       
+        res.send("cool")
+      } else {
+        res.send("not cool")
+      }
     })
     .catch(function(err) {
     
